@@ -21,10 +21,21 @@ UI.formularioBuscar.addEventListener('submit', (e)=>{
         const api=new API(artista, cancion);
         api.consultarAPI()
             .then(data =>{
+                console.log(data);
                 if(data.respuesta.lyrics){
-                    console.log('ok');
+                    //La canción existe
+                    const letra= data.respuesta.lyrics;
+                    UI.divResultado.textContent=letra;
+                    
                 }else{
-                    console.log('NO');
+                    //La canción no EXISTE
+                    UI.divMensajes.innerHTML='La canción no existe o la escribiste mal';
+                    UI.divMensajes.classList.add('error');
+                    setTimeout(() => {
+                        UI.divMensajes.innerHTML='';
+                        UI.divMensajes.classList.remove('error');
+                        UI.formularioBuscar.reset();
+                    }, 3000);
                 }
             });
     }
