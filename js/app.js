@@ -21,7 +21,7 @@ UI.formularioBuscar.addEventListener('submit', (e)=>{
         const api=new API(artista, cancion);
         api.consultarAPI()
             .then(data =>{
-                console.log(data);
+                //console.log(data);
                 if(data.respuesta.lyrics){
                     //La canción existe
                     const letra= data.respuesta.lyrics;
